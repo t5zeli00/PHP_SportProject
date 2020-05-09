@@ -1,0 +1,36 @@
+CREATE DATABASE sport_project;
+USE sport_project;
+GRANT ALL ON sport_project.* TO 'sport'@'localhost'
+IDENTIFIED BY 'sport_pass';
+
+CREATE TABLE SPORTSMEN (
+id_sportsman INT PRIMARY KEY AUTO_INCREMENT,
+sname VARCHAR(30),
+dateofbirth DATE,
+id_team INT references TEAMS(id_team));
+
+CREATE TABLE TEAMS (
+id_team INT PRIMARY KEY AUTO_INCREMENT,
+nameteams VARCHAR(30),
+country VARCHAR(30),
+sport VARCHAR(30),
+coachname VARCHAR(30));
+
+CREATE TABLE CHAMPIONSHIPS (
+id_champ INT PRIMARY KEY AUTO_INCREMENT,
+namechamp VARCHAR(30),
+year YEAR,
+id_sportsman INT references SPORTSMEN(id_sportsman),
+id_team INT references TEAMS(id_team),
+resultchamp VARCHAR(30));
+
+INSERT INTO SPORTSMEN (sname, dateofbirth, id_team)
+VALUES ('Lisa','1995-12-16', '1');
+INSERT INTO TEAMS (nameteams, country, sport, coachname)
+VALUES ('Alliance','Finland', 'Swimming', 'Lasse');
+INSERT INTO CHAMPIONSHIPS (id_champ, namechamp, year, id_sportsman, id_team, resultchamp)
+VALUES ('1','Spring hopes', '2015', '1', '1', '1st place');
+
+SELECT teams.id_team, sportsmen.id_team FROM TEAMS INNER JOIN SPORTSMEN ON teams.id_team=sportsmen.id_team;
+SELECT championships.id_sportsman, sportsmen.id_sportsman FROM CHAMPIONSHIPS INNER JOIN SPORTSMEN ON championships.id_sportsman=sportsmen.id_sportsman;
+SELECT championships.id_team, teams.id_team FROM CHAMPIONSHIPS INNER JOIN TEAMS ON championships.id_team=teams.id_team;
