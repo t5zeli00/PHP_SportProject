@@ -1,4 +1,4 @@
-﻿# PHP_SportProject
+﻿# SportProject
 ## The idea of the application
 Application “Sport_project” is an example of a good manager system to conduct sport events. It is possible to see and edit information about sportsmen, teams and championships as well. All information is stored in database, which was put to mysli.oamk.fi server. 
 ## How to use the application
